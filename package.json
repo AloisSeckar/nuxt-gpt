@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "nuxt-gpt",
+  "version": "1.0.0",
+  "scripts": {
+    "eslint": "eslint .",
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "start": "nuxt preview"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "0.5.7",
+    "nuxt": "3.14.0",
+    "nuxt-chatgpt": "0.2.5",
+    "typescript": "5.6.2"
+  }
+}
