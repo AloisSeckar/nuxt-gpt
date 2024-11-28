@@ -16,7 +16,15 @@
       </UButton>
     </div>
     <div class="my-4">
-      <UTextarea v-model="data" autoresize color="gray" variant="outline" />
+      <UAlert
+        v-for="answer in data" :key="answer.id"
+        variant="soft" :color="answer.color" class="mb-2"
+        :title="answer.question" :description="answer.answer"
+      />
+    </div>
+    <div class="mt-2 text-sm">
+      <hr class="mb-1">
+      &copy; <a href="https://alois-seckar.cz/">Alois Sečkár</a> 2024
     </div>
   </div>
 </template>
@@ -28,20 +36,37 @@ useHead({
 
 const { chat } = useChatgpt()
 
-const rows = ref(2)
-const data = ref('Ptejte se!')
+type AlertColor = 'red' | 'orange' | 'amber' | 'yellow' | 'lime' | 'green' | 'emerald' | 'teal' | 'cyan' | 'sky' | 'blue' | 'indigo' | 'violet' | 'purple' | 'fuchsia' | 'pink' | 'rose'
+
+type ChatGPTEntry = {
+  id: string
+  question: string
+  answer: string
+  color: AlertColor
+}
+
+const data = ref([] as ChatGPTEntry[])
 const inputData = ref('')
 
 async function sendMessage() {
   try {
-    rows.value = rows.value + 2
-    const input = inputData.value
-    data.value = data.value + '\n' + input
-    const response = await chat(inputData.value)
-    data.value = data.value + '\n' + response
+    const question = inputData.value
+    const answer = await chat(inputData.value) as string
+    data.value.unshift({
+      id: useId(),
+      question,
+      answer,
+      color: getRandomColor(),
+    })
   }
   catch (error) {
     alert(`Join the waiting list if you want to use GPT-4 models: ${error}`)
   }
+}
+
+const colors = ['red', 'orange', 'amber', 'yellow', 'lime', 'green', 'emerald', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose'] as const
+function getRandomColor(): AlertColor {
+  const randomIndex = Math.floor(Math.random() * colors.length)
+  return colors[randomIndex]!
 }
 </script>
