@@ -19,8 +19,7 @@
       <UAlert
         v-for="answer in data" :key="answer.id"
         variant="soft" :color="answer.color" class="mb-2"
-        :title="answer.question" :description="answer.answer"
-      />
+        :title="answer.question" :description="answer.answer" />
     </div>
     <div class="mt-2 text-sm">
       <hr class="mb-1">
@@ -51,16 +50,20 @@ const inputData = ref('')
 async function sendMessage() {
   try {
     const question = inputData.value
-    const answer = await chat(inputData.value) as string
-    data.value.unshift({
-      id: useId(),
-      question,
-      answer,
-      color: getRandomColor(),
-    })
-  }
-  catch (error) {
-    alert(`Join the waiting list if you want to use GPT-4 models: ${error}`)
+    if (question) {
+      const answer = await chat(inputData.value) as string
+      data.value.unshift({
+        id: useId(),
+        question,
+        answer,
+        color: getRandomColor(),
+      })
+    } else {
+      alert('Nejprve položte otázku')
+    }
+  } catch (error) {
+    console.error(error)
+    alert(error)
   }
 }
 
