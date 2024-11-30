@@ -69,4 +69,9 @@ function getRandomColor(): AlertColor {
   const randomIndex = Math.floor(Math.random() * colors.length)
   return colors[randomIndex]!
 }
+
+onKeyStroke('Enter', (e) => {
+  e.preventDefault()
+  sendMessage()
+})
 </script>

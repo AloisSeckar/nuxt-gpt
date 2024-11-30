@@ -1,10 +1,11 @@
 // https://nuxt.com/docs/api/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-28',
+  compatibilityDate: '2024-11-30',
   modules: [
     '@nuxt/eslint',
-    'nuxt-chatgpt',
     '@nuxt/ui',
+    '@vueuse/nuxt',
+    'nuxt-chatgpt',
   ],
   colorMode: {
     preference: 'dark',
