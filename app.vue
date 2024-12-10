@@ -21,8 +21,17 @@
     <div class="my-4">
       <UAlert
         v-for="answer in data" :key="answer.id"
-        variant="soft" :color="answer.color" class="mb-2"
-        :title="answer.question" :description="answer.answer" />
+        variant="soft" :color="answer.color" class="mb-2">
+        <template #title>
+          <div class="text-left text-base">
+            Q: {{ answer.question }}
+          </div>
+        </template>
+        <template #description>
+          <!-- eslint-disable vue/no-v-html -->
+          <div class="text-justify" v-html="answer.answer" />
+        </template>
+      </UAlert>
     </div>
     <div class="mt-8 text-sm">
       <hr class="mb-1">
@@ -66,7 +75,7 @@ async function sendMessage() {
       data.value.unshift({
         id: questions.value++,
         question,
-        answer,
+        answer: preFormat(answer),
         color: getRandomColor(),
       })
     } else {
@@ -100,4 +109,21 @@ const { pause, resume } = useIntervalFn(() => {
   }
 }, 333)
 pause()
+
+function preFormat(input: string): string {
+  // escape html tags
+  input = input.replaceAll('<', '&lt;')
+  input = input.replaceAll('>', '&gt;')
+  // format markdown code blocks
+  while (input.includes('```')) {
+    input = input.replace('```', '<div class="my-2 p-1.5 bg-slate-200 opacity-75 text-black rounded"><pre>')
+    input = input.replace('```', '</pre></div>')
+  }
+  // format markdown inline code
+  while (input.includes('`')) {
+    input = input.replace('`', '<pre class="inline-block p-0.5 bg-slate-200 opacity-75 text-black font-bold">')
+    input = input.replace('`', '</pre>')
+  }
+  return input
+}
 </script>
