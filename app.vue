@@ -41,12 +41,13 @@ const { chat } = useChatgpt()
 type AlertColor = 'red' | 'orange' | 'amber' | 'yellow' | 'lime' | 'green' | 'emerald' | 'teal' | 'cyan' | 'sky' | 'blue' | 'indigo' | 'violet' | 'purple' | 'fuchsia' | 'pink' | 'rose'
 
 type ChatGPTEntry = {
-  id: string
+  id: number
   question: string
   answer: string
   color: AlertColor
 }
 
+const questions = ref(0)
 const data = ref([] as ChatGPTEntry[])
 const inputData = ref('')
 
@@ -63,7 +64,7 @@ async function sendMessage() {
     if (question) {
       const answer = await chat(inputData.value) as string
       data.value.unshift({
-        id: useId(),
+        id: questions.value++,
         question,
         answer,
         color: getRandomColor(),
