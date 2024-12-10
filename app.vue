@@ -11,9 +11,12 @@
     <div class="flex flex-row gap-2 items-center justify-center">
       Otázka:
       <UInput v-model="inputData" class="w-96" />
-      <UButton color="black" variant="solid" @click="sendMessage">
+      <UButton color="black" variant="solid" :disabled="thinking" @click="sendMessage">
         Zeptat se
       </UButton>
+    </div>
+    <div v-if="thinking" class="my-4">
+      {{ thinkingText }}
     </div>
     <div class="my-4">
       <UAlert
@@ -47,7 +50,14 @@ type ChatGPTEntry = {
 const data = ref([] as ChatGPTEntry[])
 const inputData = ref('')
 
+const thinking = ref(false)
+const thinkingText = ref('Přemýšlím')
+
 async function sendMessage() {
+  // loading indicator
+  thinking.value = true
+  resume()
+  // ChatGPT interaction
   try {
     const question = inputData.value
     if (question) {
@@ -65,6 +75,9 @@ async function sendMessage() {
     console.error(error)
     alert(error)
   }
+  // loading indicator
+  pause()
+  thinking.value = false
 }
 
 const colors = ['red', 'orange', 'amber', 'yellow', 'lime', 'green', 'emerald', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose'] as const
@@ -77,4 +90,13 @@ onKeyStroke('Enter', (e) => {
   e.preventDefault()
   sendMessage()
 })
+
+const { pause, resume } = useIntervalFn(() => {
+  if (thinkingText.value.length < 12) {
+    thinkingText.value += '.'
+  } else {
+    thinkingText.value = 'Přemýšlím'
+  }
+}, 333)
+pause()
 </script>
