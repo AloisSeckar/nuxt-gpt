@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full sm:w-4/5 m-4 sm:mx-auto text-center text-slate-200">
+  <div class="w-full sm:w-5/6 sm:mx-auto text-center text-slate-200">
     <h1 class="text-3xl font-bold">
       Zeptej se Ej Aj
     </h1>
@@ -18,10 +18,11 @@
     <div v-if="thinking" class="my-4">
       {{ thinkingText }}
     </div>
-    <div class="my-4">
+    <div class="flex flex-col mx-4 my-4">
       <UAlert
         v-for="answer in data" :key="answer.id"
-        variant="soft" :color="answer.color" class="mb-2">
+        variant="soft" :color="answer.color"
+        class="mb-4 mx-2 lg:w-4/5" :class="answer.id % 2 == 0 ? 'lg:self-start' : 'lg:self-end'">
         <template #title>
           <div class="text-left text-base">
             Q: {{ answer.question }}
