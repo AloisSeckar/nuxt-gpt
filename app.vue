@@ -24,7 +24,7 @@
         variant="soft" :color="answer.color" class="mb-2"
         :title="answer.question" :description="answer.answer" />
     </div>
-    <div class="mt-2 text-sm">
+    <div class="mt-8 text-sm">
       <hr class="mb-1">
       &copy; <a href="https://alois-seckar.cz/">Alois Sečkár</a> 2024
     </div>
