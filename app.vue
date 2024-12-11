@@ -1,16 +1,16 @@
 <template>
-  <div class="w-full sm:w-5/6 sm:mx-auto text-center text-slate-200">
+  <div class="w-full sm:w-5/6 sm:mx-auto py-4 text-center text-slate-200">
     <h1 class="text-3xl font-bold">
       Zeptej se Ej Aj
     </h1>
-    <div class="my-4">
-      Pomocí vstupního pole níže můžete zadarmo klást otázky placené verzi ChatGPT.<br>
-      Historie konverzace se bude postupně zobrazovat, ale pozor - neukládá se!<br>
+    <div class="my-4 px-2">
+      Pomocí vstupu níže můžete zadarmo klást otázky placené verzi <strong>ChatGPT</strong>.<br class="hidden sm:block">
+      Historie otázek se bude postupně zobrazovat, ale pozor - neukládá se!<br class="hidden sm:block">
       Jakmile ze stránky odejdete, po návratu zpět musíte začít znovu.
     </div>
-    <div class="flex flex-row gap-2 items-center justify-center">
-      Otázka:
-      <UInput v-model="inputData" class="w-96" />
+    <div class="flex flex-col sm:flex-row gap-2 px-2 items-center justify-center">
+      <strong>Otázka:</strong>
+      <UInput v-model="inputData" class="w-full sm:w-96" />
       <UButton color="black" variant="solid" :disabled="thinking" @click="sendMessage">
         Zeptat se
       </UButton>
@@ -24,13 +24,13 @@
         variant="soft" :color="answer.color"
         class="mb-4 mx-2 lg:w-4/5" :class="answer.id % 2 == 0 ? 'lg:self-start' : 'lg:self-end'">
         <template #title>
-          <div class="text-left text-base">
-            Q: {{ answer.question }}
+          <div class="text-left text-lg">
+            {{ answer.question }}
           </div>
         </template>
         <template #description>
           <!-- eslint-disable vue/no-v-html -->
-          <div class="text-justify" v-html="answer.answer" />
+          <div class="text-justify text-base" v-html="answer.answer" />
         </template>
       </UAlert>
     </div>
