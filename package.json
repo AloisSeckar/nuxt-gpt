@@ -13,6 +13,7 @@
     "@nuxt/ui": "2.19.2",
     "@vueuse/core": "11.2.0",
     "@vueuse/nuxt": "11.2.0",
+    "elrh-pslo": "1.1.6",
     "nuxt": "3.14.1592",
     "nuxt-chatgpt": "0.2.5",
     "typescript": "5.6.2"

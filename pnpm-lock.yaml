@@ -20,6 +20,9 @@ importers:
       '@vueuse/nuxt':
         specifier: 11.2.0
         version: 11.2.0(magicast@0.3.5)(nuxt@3.14.1592(@parcel/watcher@2.5.0)(@types/node@22.10.1)(eslint@9.15.0(jiti@2.4.0))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.27.4)(terser@5.36.0)(typescript@5.6.2)(vite@5.4.11(@types/node@22.10.1)(terser@5.36.0)))(rollup@4.27.4)(vue@3.5.13(typescript@5.6.2))
+      elrh-pslo:
+        specifier: 1.1.6
+        version: 1.1.6
       nuxt:
         specifier: 3.14.1592
         version: 3.14.1592(@parcel/watcher@2.5.0)(@types/node@22.10.1)(eslint@9.15.0(jiti@2.4.0))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.27.4)(terser@5.36.0)(typescript@5.6.2)(vite@5.4.11(@types/node@22.10.1)(terser@5.36.0))
@@ -1946,6 +1949,9 @@ packages:
 
   electron-to-chromium@1.5.66:
     resolution: {integrity: sha512-pI2QF6+i+zjPbqRzJwkMvtvkdI7MjVbSh2g8dlMguDJIXEPw+kwasS1Jl+YGPEBfGVxsVgGUratAKymPdPo2vQ==}
+
+  elrh-pslo@1.1.6:
+    resolution: {integrity: sha512-DPPvTaMKRV5jFfi48jaFK5soJjB9ZiO2actXps4aT9r6+GGTN81Gi/nfcLeVlrq5hXIogxGbYANZl3It/Gxviw==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -6465,6 +6471,8 @@ snapshots:
   ee-first@1.1.1: {}
 
   electron-to-chromium@1.5.66: {}
+
+  elrh-pslo@1.1.6: {}
 
   emoji-regex@8.0.0: {}
 

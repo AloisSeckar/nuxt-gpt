@@ -24,13 +24,16 @@
         variant="soft" :color="answer.color"
         class="mb-4 mx-2 lg:w-4/5" :class="answer.id % 2 == 0 ? 'lg:self-start' : 'lg:self-end'">
         <template #title>
-          <div class="text-left text-lg">
-            {{ answer.question }}
+          <div class="text-left text-lg mb-1">
+            {{ preventSingleLetterOrphans(answer.question) }}
+          </div>
+          <div class="text-left text-lg mb-1">
+            -----
           </div>
         </template>
         <template #description>
           <!-- eslint-disable vue/no-v-html -->
-          <div class="text-justify text-base" v-html="answer.answer" />
+          <div class="text-justify text-base" v-html="preventSingleLetterOrphans(answer.answer)" />
         </template>
       </UAlert>
     </div>
@@ -42,6 +45,8 @@
 </template>
 
 <script setup lang="ts">
+import { preventSingleLetterOrphans } from 'elrh-pslo'
+
 useHead({
   title: 'Zeptej se Ej Aj',
 })
