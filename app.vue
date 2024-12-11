@@ -125,6 +125,13 @@ function preFormat(input: string): string {
     input = input.replace('`', '<pre class="inline-block p-0.5 bg-slate-200 opacity-75 text-black font-bold">')
     input = input.replace('`', '</pre>')
   }
+  // format links
+  input = input.replaceAll(/\[([^\]]+)\]\(([^)]+)\)/g, `<a href="$2" class="hover:text-slate-300">$1</a>`)
+  // format bold font
+  input = input.replaceAll(/\*\*([^*]+)\*\*/g, `<strong>$1</strong>`)
+  // format newlines -> br
+  input = input.replaceAll('\n', `<br>`)
+  //
   return input
 }
 </script>
