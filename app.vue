@@ -134,6 +134,11 @@ function preFormat(input: string): string {
   input = input.replaceAll(/\[([^\]]+)\]\(([^)]+)\)/g, `<a href="$2" class="hover:text-slate-300">$1</a>`)
   // format bold font
   input = input.replaceAll(/\*\*([^*]+)\*\*/g, `<strong>$1</strong>`)
+  // format headlines
+  input = input.replaceAll(/####\s?([^\n]*)\n/g, `<h4 class="font-bold">$1</h4>`)
+  input = input.replaceAll(/###\s?([^\n]*)\n/g, `<h3 class="text-lg font-bold">$1</h3>`)
+  input = input.replaceAll(/##\s?([^\n]*)\n/g, `<h2 class="text-xl font-bold">$1</h2>`)
+  input = input.replaceAll(/#\s?([^\n]*)\n/g, `<h1 class="text-2xl font-bold">$1</h1>`)
   // format newlines -> br
   input = input.replaceAll('\n', `<br>`)
   //
