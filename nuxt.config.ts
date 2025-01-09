@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-30',
+  compatibilityDate: '2025-01-09',
   modules: [
     '@nuxt/eslint',
     '@nuxt/ui',

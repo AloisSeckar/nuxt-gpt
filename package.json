@@ -9,13 +9,13 @@
     "start": "nuxt preview"
   },
   "devDependencies": {
-    "@nuxt/eslint": "0.5.7",
-    "@nuxt/ui": "2.19.2",
-    "@vueuse/core": "11.2.0",
-    "@vueuse/nuxt": "11.2.0",
+    "@nuxt/eslint": "0.7.5",
+    "@nuxt/ui": "2.20.0",
+    "@vueuse/core": "12.3.0",
+    "@vueuse/nuxt": "12.3.0",
     "elrh-pslo": "1.1.6",
-    "nuxt": "3.14.1592",
+    "nuxt": "3.15.1",
     "nuxt-chatgpt": "0.2.5",
-    "typescript": "5.6.2"
+    "typescript": "latest"
   }
 }
