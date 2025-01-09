@@ -117,6 +117,10 @@ const { pause, resume } = useIntervalFn(() => {
 pause()
 
 function preFormat(input: string): string {
+  if (!input) {
+    return ''
+  }
+
   // escape html tags
   input = input.replaceAll('<', '&lt;')
   input = input.replaceAll('>', '&gt;')
