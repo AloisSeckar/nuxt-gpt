@@ -126,11 +126,11 @@ function preFormat(input: string): string {
   input = input.replaceAll('>', '&gt;')
 
   // format bold font
-  input = input.replaceAll(/[^`]\s\*\*([^*]+)\*\*[^`]/g, `<strong>$1</strong>`)
-  input = input.replaceAll(/[^`]\s__([^_]+)__[^`]/g, `<strong>$1</strong>`)
+  input = input.replaceAll(/\s\*\*([^*]+)\*\*/g, `<strong>$1</strong>`)
+  input = input.replaceAll(/\s__([^_]+)__/g, `<strong>$1</strong>`)
   // format italic font
-  input = input.replaceAll(/[^`]\s\*([^*]+)\*[^`]/g, `<em>$1</em>`)
-  input = input.replaceAll(/[^`]\s_([^_]+)_[^`]/g, `<em>$1</em>`)
+  input = input.replaceAll(/\s\*([^*]+)\*/g, `<em>$1</em>`)
+  input = input.replaceAll(/\s_([^_]+)_/g, `<em>$1</em>`)
 
   // format markdown code blocks
   while (input.includes('```')) {
