@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     preference: 'dark',
   },
   chatgpt: {
-    apiKey: process.env.NUXT_PUBLIC_OPENAI_KEY,
+    apiKey: process.env.NUXT_OPENAI_KEY,
   },
   eslint: {
     config: {

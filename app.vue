@@ -39,7 +39,7 @@
     </div>
     <div class="mt-8 text-sm">
       <hr class="mb-1">
-      &copy; <a href="https://alois-seckar.cz/">Alois Sečkár</a> 2024
+      &copy; <a href="https://alois-seckar.cz/">Alois Sečkár</a> {{ new Date().getFullYear() }}
     </div>
   </div>
 </template>
