@@ -121,8 +121,6 @@ function preFormat(input: string): string {
     return ''
   }
 
-  console.log(input)
-
   // escape html tags
   input = input.replaceAll('<', '&lt;')
   input = input.replaceAll('>', '&gt;')
