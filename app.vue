@@ -121,9 +121,19 @@ function preFormat(input: string): string {
     return ''
   }
 
+  console.log(input)
+
   // escape html tags
   input = input.replaceAll('<', '&lt;')
   input = input.replaceAll('>', '&gt;')
+
+  // format bold font
+  input = input.replaceAll(/[^`]\s\*\*([^*]+)\*\*[^`]/g, `<strong>$1</strong>`)
+  input = input.replaceAll(/[^`]\s__([^_]+)__[^`]/g, `<strong>$1</strong>`)
+  // format italic font
+  input = input.replaceAll(/[^`]\s\*([^*]+)\*[^`]/g, `<em>$1</em>`)
+  input = input.replaceAll(/[^`]\s_([^_]+)_[^`]/g, `<em>$1</em>`)
+
   // format markdown code blocks
   while (input.includes('```')) {
     input = input.replace('```', '<div class="my-2 p-1.5 bg-slate-200 opacity-75 text-black rounded"><pre>')
@@ -134,18 +144,21 @@ function preFormat(input: string): string {
     input = input.replace('`', '<pre class="inline-block p-0.5 bg-slate-200 opacity-75 text-black font-bold">')
     input = input.replace('`', '</pre>')
   }
+
+  // format headlines
+  input = input.replaceAll(/######\s([^\n]*)\n/g, `<h6 class="font-bold">$1</h6>`)
+  input = input.replaceAll(/#####\s([^\n]*)\n/g, `<h5 class="font-bold">$1</h5>`)
+  input = input.replaceAll(/####\s([^\n]*)\n/g, `<h4 class="font-bold">$1</h4>`)
+  input = input.replaceAll(/###\s([^\n]*)\n/g, `<h3 class="text-lg font-bold">$1</h3>`)
+  input = input.replaceAll(/##\s([^\n]*)\n/g, `<h2 class="text-xl font-bold">$1</h2>`)
+  input = input.replaceAll(/#\s([^\n]*)\n/g, `<h1 class="text-2xl font-bold">$1</h1>`)
+
   // format links
   input = input.replaceAll(/\[([^\]]+)\]\(([^)]+)\)/g, `<a href="$2" class="hover:text-slate-300">$1</a>`)
-  // format bold font
-  input = input.replaceAll(/\*\*([^*]+)\*\*/g, `<strong>$1</strong>`)
-  // format headlines
-  input = input.replaceAll(/####\s?([^\n]*)\n/g, `<h4 class="font-bold">$1</h4>`)
-  input = input.replaceAll(/###\s?([^\n]*)\n/g, `<h3 class="text-lg font-bold">$1</h3>`)
-  input = input.replaceAll(/##\s?([^\n]*)\n/g, `<h2 class="text-xl font-bold">$1</h2>`)
-  input = input.replaceAll(/#\s?([^\n]*)\n/g, `<h1 class="text-2xl font-bold">$1</h1>`)
+
   // format newlines -> br
   input = input.replaceAll('\n', `<br>`)
-  //
+
   return input
 }
 </script>
