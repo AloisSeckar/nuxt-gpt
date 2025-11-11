@@ -84,6 +84,7 @@ async function sendMessage() {
         answer: preFormat(answer),
         color: getRandomColor(),
       })
+      inputData.value = ''
     } else {
       alert('Nejprve položte otázku')
     }
