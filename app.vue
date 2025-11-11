@@ -77,7 +77,7 @@ async function sendMessage() {
   try {
     const question = inputData.value
     if (question) {
-      const answer = await chat(inputData.value) as string
+      const answer = await chat(inputData.value, 'gpt-4o') as string
       data.value.unshift({
         id: questions.value++,
         question,
