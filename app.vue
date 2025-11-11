@@ -134,12 +134,12 @@ function preFormat(input: string): string {
 
   // format markdown code blocks
   while (input.includes('```')) {
-    input = input.replace('```', '<div class="my-2 p-1.5 bg-slate-200 opacity-75 text-black rounded"><pre>')
+    input = input.replace('```', '<div class="my-2 p-1.5 bg-slate-200 opacity-60 text-black rounded"><pre>')
     input = input.replace('```', '</pre></div>')
   }
   // format markdown inline code
   while (input.includes('`')) {
-    input = input.replace('`', '<pre class="inline-block p-0.5 bg-slate-200 opacity-75 text-black font-bold">')
+    input = input.replace('`', '<pre class="inline-block m-0.5 px-0.5 bg-slate-200 opacity-60 text-black font-bold">')
     input = input.replace('`', '</pre>')
   }
 
