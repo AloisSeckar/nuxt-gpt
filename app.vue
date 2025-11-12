@@ -159,7 +159,7 @@ function preFormat(input: string): string {
   input = input.replaceAll(/\s#\s([^\n]*)\n/g, `<h1 class="text-2xl font-bold">$1</h1>`)
 
   // format links
-  input = input.replaceAll(/\s\[([^\]]+)\]\(([^)]+)\)/g, `<a href="$2" class="hover:text-slate-300">$1</a>`)
+  input = input.replaceAll(/\s\[([^\]]+)\]\(([^)]+)\)/g, ` <a href="$2" class="underline text-slate-200 hover:text-slate-400">$1</a>`)
 
   // format newlines -> br
   input = input.replaceAll('\n', `<br>`)
