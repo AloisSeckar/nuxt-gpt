@@ -51,8 +51,6 @@ useHead({
   title: 'Zeptej se Ej Aj',
 })
 
-const { chat } = useChatgpt()
-
 type AlertColor = 'red' | 'orange' | 'amber' | 'yellow' | 'lime' | 'green' | 'emerald' | 'teal' | 'cyan' | 'sky' | 'blue' | 'indigo' | 'violet' | 'purple' | 'fuchsia' | 'pink' | 'rose'
 
 type ChatGPTEntry = {
@@ -73,11 +71,19 @@ async function sendMessage() {
   // loading indicator
   thinking.value = true
   resume()
-  // ChatGPT interaction
+  // ChatGPT interaction via OpenAPI package (runs Nuxt server side)
   try {
     const question = inputData.value
     if (question) {
-      const answer = await chat(inputData.value, 'gpt-4o') as string
+      const answer = await $fetch<string>('/api/chat', {
+        method: 'POST',
+        body: {
+          messages: [
+            { role: 'system', content: 'Toto je webové rozhraní určené pro přiblížení ChatGPT žákům na českých základních a středních školách. Primárním úkolem je ukázat, jak tě lze použít jako asistenta při výuce programování. Odpovídej na dotazy tak, abys je zaujal, podnítil jejich zvědavost a chuť klást další otázky. Nekomentuj ale dotazy, prostě jen odpovídej.' },
+            { role: 'user', content: question },
+          ],
+        },
+      })
       data.value.unshift({
         id: questions.value++,
         question,
